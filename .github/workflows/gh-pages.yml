@@ -13,6 +13,12 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Initialize submodules
+        run: |
+          git submodule sync
+          git submodule update --init --recursive
+          ls -la themes/  # Verify theme exists
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
@@ -27,8 +33,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          
-      - name: Initialize submodules
-        run: |
-          git submodule sync
-          git submodule update --init --recursive

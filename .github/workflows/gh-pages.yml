@@ -27,3 +27,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+          
+      - name: Initialize submodules
+        run: |
+          git submodule sync
+          git submodule update --init --recursive
